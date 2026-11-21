@@ -1,0 +1,1196 @@
+/* ==========================================================================
+   DHUNERI — The Land Page Stylesheet
+   Scoped namespace: .land-story
+   Uses DHUNERI design tokens & typography
+   ========================================================================== */
+
+.land-story {
+  --land-cream: #EFE5D0;          /* Warm cream matching 2B — no stark white */
+  --land-cream-warm: #EFE5D0;     /* Section 02B background */
+  --land-cream-deep: #E8DBBF;     /* Deep cream accent */
+  --land-ink: #1A1613;
+  --land-forest: #2A3630;
+  --land-forest-deep: #1E2723;
+  --land-copper: #B8703A;
+  --land-copper-dim: #8F5528;
+  --land-copper-lift: #D48A55;
+  --land-chiya: #E4D3B7;
+  --land-line: rgba(26, 22, 19, 0.16);
+  --land-line-light: rgba(244, 237, 221, 0.22);
+  --land-pad: var(--pad, clamp(1.2rem, 4vw, 4.8rem));
+  --land-max: var(--max, 1320px);
+
+  color: var(--land-ink);
+  background-color: var(--land-cream);
+  font-family: var(--gh-font-body, 'EB Garamond', Georgia, serif);
+  font-size: clamp(1.05rem, 1rem + 0.2vw, 1.2rem);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.land-story * {
+  box-sizing: border-box;
+}
+
+.land-wrap {
+  width: min(calc(100% - 2 * var(--land-pad)), var(--land-max));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.land-section-num {
+  margin: 0 0 1rem;
+  color: var(--land-copper);
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.land-story h1,
+.land-story h2,
+.land-story h3 {
+  margin: 0;
+  font-family: var(--gh-font-heading, 'Instrument Serif', Georgia, serif);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 0.94;
+}
+
+.land-story h1 em,
+.land-story h2 em {
+  font-style: italic;
+  color: var(--land-copper-lift);
+}
+
+/* ==========================================================================
+   01 — HERO SECTION
+   ========================================================================== */
+.land-hero {
+  position: relative;
+  min-height: min(920px, 100svh);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 8.5rem;
+  padding-bottom: 2rem;
+  color: var(--land-cream);
+  background-color: var(--land-ink);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.land-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -2;
+  filter: saturate(0.85) brightness(0.72) contrast(1.05);
+}
+
+.land-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: 
+    linear-gradient(180deg, rgba(26, 22, 19, 0.75) 0%, rgba(26, 22, 19, 0.35) 45%, rgba(26, 22, 19, 0.88) 100%),
+    linear-gradient(90deg, rgba(26, 22, 19, 0.8) 0%, rgba(26, 22, 19, 0.3) 60%, transparent 100%);
+}
+
+.land-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+  padding: 1rem 0;
+}
+
+.land-hero-eyebrow {
+  color: var(--land-copper-lift);
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  margin: 0 0 0.8rem;
+}
+
+.land-hero h1 {
+  font-size: clamp(3.6rem, 6.8vw, 6.8rem);
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  max-width: 14ch;
+  margin: 0 0 1.6rem;
+  color: var(--land-cream);
+}
+
+.land-hero-sub {
+  font-family: var(--gh-font-body, 'EB Garamond', Georgia, serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 1.1rem + 0.35vw, 1.45rem);
+  line-height: 1.45;
+  color: rgba(244, 237, 221, 0.88);
+  max-width: 38ch;
+  margin: 0;
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.35);
+}
+
+.land-hero-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  padding-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.land-scroll-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--land-cream);
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(244, 237, 221, 0.5);
+  padding-bottom: 0.2rem;
+  transition: all 0.2s ease;
+}
+
+.land-scroll-link:hover,
+.land-scroll-link:focus-visible {
+  color: var(--land-copper-lift);
+  border-color: var(--land-copper-lift);
+}
+
+.land-hero-credit {
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(244, 237, 221, 0.7);
+  max-width: 440px;
+  text-align: right;
+}
+
+.land-hero-credit a {
+  color: var(--land-copper-lift);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ==========================================================================
+   02 — ORIGIN (Where it begins)
+   ========================================================================== */
+.land-origin-section {
+  padding: clamp(5rem, 9vw, 8.5rem) 0;
+  background-color: var(--land-cream);
+  border-bottom: 1px solid var(--land-line);
+}
+
+.land-origin-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.82fr) minmax(360px, 1.18fr);
+  gap: clamp(2.5rem, 7vw, 7rem);
+  align-items: start;
+}
+
+.land-origin-title h2 {
+  font-size: clamp(3.2rem, 5.8vw, 5.8rem);
+  margin-top: 0.8rem;
+  color: var(--land-ink);
+}
+
+.land-origin-title h2 em {
+  color: var(--land-copper-dim);
+}
+
+.land-lead {
+  font-family: var(--gh-font-heading, 'Instrument Serif', Georgia, serif);
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  line-height: 1.25;
+  color: var(--land-ink);
+  margin: 0 0 1.6rem;
+}
+
+.land-body-p {
+  color: rgba(26, 22, 19, 0.82);
+  font-size: 1.18rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Microclimate Field Specification Strip */
+.land-spec-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background-color: var(--land-line);
+  border: 1px solid var(--land-line);
+  margin-top: clamp(3.5rem, 5.5vw, 5rem);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.land-spec-col {
+  background-color: var(--land-cream-warm);
+  padding: 1.8rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.land-spec-label {
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--land-copper-dim);
+}
+
+.land-spec-val {
+  font-family: var(--gh-font-heading, 'Instrument Serif', Georgia, serif);
+  font-size: clamp(1.7rem, 2.3vw, 2.2rem);
+  line-height: 1.05;
+  font-weight: 400;
+  color: var(--land-ink);
+  margin: 0.2rem 0;
+}
+
+.land-spec-detail {
+  font-family: var(--gh-font-body, 'EB Garamond', Georgia, serif);
+  font-size: 0.95rem;
+  color: rgba(26, 22, 19, 0.7);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   PLATE 01 — ANATOMY OF A HILLSIDE (Terrain & Shade Cross-Section)
+   ========================================================================== */
+.land-slope-section {
+  padding: clamp(5.5rem, 9vw, 8.5rem) 0;
+  background-color: var(--land-forest);
+  color: var(--land-cream);
+  border-bottom: 1px solid rgba(244, 237, 221, 0.12);
+}
+
+.land-slope-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.85fr) minmax(360px, 1.15fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.land-slope-info h2 {
+  font-size: clamp(3.2rem, 5.8vw, 5.8rem);
+  color: var(--land-cream);
+  margin-top: 0.8rem;
+}
+
+.land-slope-info h2 em {
+  color: var(--land-copper-lift);
+}
+
+.land-slope-desc {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: rgba(244, 237, 221, 0.82);
+  margin: 1.5rem 0 2rem;
+  max-width: 44ch;
+}
+
+.land-slope-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  border-top: 1px solid rgba(244, 237, 221, 0.18);
+  padding-top: 1.5rem;
+}
+
+.land-pin-badge {
+  display: inline-grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--land-copper-lift);
+  color: var(--land-ink);
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.land-slope-legend-item strong {
+  display: block;
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--land-cream);
+  margin-bottom: 0.25rem;
+}
+
+.land-slope-legend-item p {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  color: rgba(244, 237, 221, 0.75);
+}
+
+.land-slope-figure {
+  position: relative;
+  min-height: 520px;
+  overflow: hidden;
+  border: 1px solid rgba(244, 237, 221, 0.25);
+  background: #D8C7A5;
+  border-radius: 2px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  margin: 0;
+}
+
+.land-slope-figure svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.land-slope-pin {
+  position: absolute;
+  display: grid;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 1px solid var(--land-ink);
+  border-radius: 50%;
+  background: var(--land-cream);
+  color: var(--land-ink);
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  place-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  z-index: 2;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.land-slope-pin.is-highlighted,
+.land-slope-pin:hover {
+  transform: scale(1.25);
+  background: var(--land-copper-lift);
+  color: var(--land-ink);
+  box-shadow: 0 0 16px rgba(212, 138, 85, 0.6);
+}
+
+.land-slope-legend-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 4px;
+  transition: all 0.25s ease;
+}
+
+.land-slope-legend-item.is-highlighted {
+  background: rgba(244, 237, 221, 0.1);
+}
+
+.land-slope-pin.pin-1 { top: 28%; left: 22%; }
+.land-slope-pin.pin-2 { top: 43%; left: 50%; }
+.land-slope-pin.pin-3 { top: 22%; right: 18%; }
+
+.land-slope-caption {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.4rem;
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  z-index: 2;
+}
+
+.land-slope-caption span {
+  padding: 0.4rem 0.65rem;
+  background: rgba(26, 22, 19, 0.85);
+  color: var(--land-cream);
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   03 — GROWING REGIONS (Warm Cream Background & Rich Cards)
+   ========================================================================== */
+.land-regions-section {
+  padding: clamp(5rem, 9vw, 8.5rem) 0;
+  background-color: var(--land-cream-warm);
+  border-bottom: 1px solid var(--land-line);
+}
+
+.land-regions-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 5vw, 6rem);
+  align-items: end;
+  margin-bottom: 4rem;
+}
+
+.land-regions-head h2 {
+  font-size: clamp(3.2rem, 5.8vw, 5.8rem);
+  color: var(--land-ink);
+}
+
+.land-regions-head h2 em {
+  color: var(--land-copper-dim);
+}
+
+.land-regions-intro {
+  font-size: 1.18rem;
+  line-height: 1.6;
+  color: rgba(26, 22, 19, 0.8);
+  margin: 0;
+  max-width: 44ch;
+}
+
+.land-district-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.land-district-card {
+  padding: 2.2rem 1.8rem;
+  background: var(--land-cream);
+  border: 1px solid var(--land-line);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: 2px;
+}
+
+.land-district-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--land-copper-dim);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+}
+
+.land-district-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--land-line);
+  margin-bottom: 1.2rem;
+}
+
+.land-district-idx {
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--land-copper-dim);
+}
+
+.land-district-elev {
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: rgba(26, 22, 19, 0.65);
+  letter-spacing: 0.04em;
+}
+
+.land-district-name {
+  font-family: var(--gh-font-heading, 'Instrument Serif', Georgia, serif);
+  font-size: clamp(2rem, 2.6vw, 2.6rem);
+  line-height: 1;
+  color: var(--land-ink);
+  margin: 0 0 0.4rem;
+}
+
+.land-district-tag {
+  font-family: var(--gh-font-body, 'EB Garamond', Georgia, serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--land-copper-dim);
+  margin: 0 0 1rem;
+}
+
+.land-district-detail {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: rgba(26, 22, 19, 0.78);
+  margin: 0 0 1.5rem;
+  flex-grow: 1;
+}
+
+.land-district-foot {
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(26, 22, 19, 0.55);
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--land-line);
+}
+
+.land-caveat {
+  margin-top: 2.5rem;
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: rgba(26, 22, 19, 0.58);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ==========================================================================
+   04 — THE PLANT (Cream Background)
+   ========================================================================== */
+.land-plant-section {
+  padding: clamp(5rem, 9vw, 8.5rem) 0;
+  background-color: var(--land-cream);
+  border-bottom: 1px solid var(--land-line);
+}
+
+.land-plant-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 1.05fr) minmax(320px, 0.95fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.land-plant-figure {
+  margin: 0;
+}
+
+.land-plant-figure img {
+  width: 100%;
+  height: clamp(380px, 48vw, 580px);
+  object-fit: cover;
+  object-position: center;
+  border-radius: 2px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.07);
+}
+
+.land-plant-caption {
+  margin-top: 1rem;
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 11px;
+  line-height: 1.55;
+  color: rgba(26, 22, 19, 0.65);
+}
+
+.land-plant-caption a {
+  color: var(--land-copper-dim);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.land-plant-info {
+  padding: 1rem 0;
+}
+
+.land-plant-info h2 {
+  font-size: clamp(3.2rem, 5.8vw, 5.8rem);
+  color: var(--land-ink);
+  margin-top: 0.8rem;
+}
+
+.land-plant-info h2 em {
+  color: var(--land-copper-dim);
+}
+
+.land-plant-desc {
+  font-size: 1.18rem;
+  line-height: 1.6;
+  color: rgba(26, 22, 19, 0.82);
+  margin: 1.8rem 0 2.5rem;
+  max-width: 44ch;
+}
+
+.land-facts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--land-line);
+}
+
+.land-fact strong {
+  display: block;
+  font-family: var(--gh-font-heading, 'Instrument Serif', Georgia, serif);
+  font-size: clamp(2.2rem, 3.2vw, 3rem);
+  line-height: 1;
+  font-weight: 400;
+  color: var(--land-copper-dim);
+}
+
+.land-fact span {
+  display: block;
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(26, 22, 19, 0.58);
+  margin-top: 0.6rem;
+}
+
+/* ==========================================================================
+   PLATE 02 — THE GROWING YEAR (4-Season Calendar)
+   ========================================================================== */
+.land-seasons-section {
+  padding: clamp(5.5rem, 9vw, 8.5rem) 0;
+  background-color: var(--land-cream-warm);
+  border-bottom: 1px solid var(--land-line);
+}
+
+.land-seasons-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(360px, 1.28fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.land-seasons-intro h2 {
+  font-size: clamp(3.2rem, 5.8vw, 5.8rem);
+  color: var(--land-ink);
+  margin-top: 0.8rem;
+}
+
+.land-seasons-intro h2 em {
+  color: var(--land-copper-dim);
+}
+
+.land-seasons-intro p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: rgba(26, 22, 19, 0.8);
+  margin-top: 1.5rem;
+  max-width: 40ch;
+}
+
+.land-season-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.land-season-tab {
+  padding: 0.75rem 1.1rem;
+  border: 1px solid var(--land-line);
+  background: var(--land-cream);
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--land-ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 2px;
+}
+
+.land-season-tab:hover,
+.land-season-tab.is-active {
+  color: var(--land-cream);
+  background: var(--land-ink);
+  border-color: var(--land-ink);
+}
+
+.land-season-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 420px;
+  border: 1px solid var(--land-line);
+  background: var(--land-cream);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.land-season-image-box {
+  position: relative;
+  min-height: 340px;
+  background: #D8C7A5;
+}
+
+.land-season-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.85);
+  display: block;
+}
+
+.land-season-badge {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 0.35rem 0.65rem;
+  background: rgba(26, 22, 19, 0.88);
+  color: var(--land-cream);
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(244, 237, 221, 0.15);
+}
+
+.land-season-content {
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem;
+  justify-content: center;
+}
+
+.land-season-status {
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--land-copper-dim);
+  margin-bottom: 0.8rem;
+}
+
+.land-season-content h3 {
+  font-size: clamp(2.2rem, 3.2vw, 2.8rem);
+  line-height: 1;
+  color: var(--land-ink);
+  margin-bottom: 1.2rem;
+}
+
+.land-season-content p {
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: rgba(26, 22, 19, 0.82);
+  margin: 0;
+}
+
+.land-season-caption {
+  font-family: 'Manrope', -apple-system, sans-serif !important;
+  font-size: 0.68rem !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0.02em;
+  color: rgba(26, 22, 19, 0.55) !important;
+  margin-top: 1.6rem !important;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--land-line);
+}
+
+/* ==========================================================================
+   PLATE 03 — LOCAL MEASURE (A Hill Measures Itself in Ropani)
+   ========================================================================== */
+.land-measure-section {
+  padding: clamp(5.5rem, 9vw, 8.5rem) 0;
+  background-color: var(--land-cream-deep);
+  border-bottom: 1px solid var(--land-line);
+}
+
+.land-measure-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.95fr) minmax(320px, 1.05fr);
+  gap: clamp(2.5rem, 7vw, 7rem);
+  align-items: center;
+}
+
+.land-ropani-graphic {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.land-ropani-box {
+  position: relative;
+  width: min(100%, 420px);
+  aspect-ratio: 1;
+  padding: 12%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.land-ropani-cells {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--land-ink);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.land-ropani-cells i {
+  border: 1px solid rgba(26, 22, 19, 0.25);
+  display: block;
+}
+
+.land-ropani-tag {
+  position: absolute;
+  padding: 0.25rem 0.65rem;
+  background: var(--land-cream-deep);
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--land-ink);
+}
+
+.land-ropani-tag.top { top: 3%; left: 50%; transform: translateX(-50%); }
+.land-ropani-tag.bottom { bottom: 3%; left: 50%; transform: translateX(-50%); }
+.land-ropani-tag.side { top: 50%; left: -2%; transform: translateY(-50%) rotate(-90deg); }
+
+.land-measure-info h2 {
+  font-size: clamp(3.2rem, 5.8vw, 5.8rem);
+  color: var(--land-ink);
+  margin-top: 0.8rem;
+}
+
+.land-measure-info h2 em {
+  color: var(--land-copper-dim);
+}
+
+.land-measure-lead {
+  font-family: var(--gh-font-heading, 'Instrument Serif', Georgia, serif);
+  font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+  line-height: 1.25;
+  color: var(--land-ink);
+  margin: 1.4rem 0 1rem;
+}
+
+/* ==========================================================================
+   PLATE 04 — IMAGE ESSAY (Shade, Water, Ground)
+   ========================================================================== */
+.land-essay-section {
+  padding: clamp(5.5rem, 9vw, 8.5rem) 0;
+  background-color: var(--land-cream);
+  border-bottom: 1px solid var(--land-line);
+}
+
+.land-essay-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.land-essay-head h2 {
+  font-size: clamp(3.2rem, 5.8vw, 5.8rem);
+  color: var(--land-ink);
+  margin-top: 0.8rem;
+}
+
+.land-essay-head h2 em {
+  color: var(--land-copper-dim);
+}
+
+.land-essay-dek {
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(26, 22, 19, 0.65);
+  max-width: 34ch;
+  margin: 0;
+}
+
+.land-essay-mosaic {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 1.5rem;
+}
+
+.land-mosaic-item {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: #D8C7A5;
+  border-radius: 2px;
+}
+
+.land-mosaic-item.large {
+  min-height: 580px;
+}
+
+.land-mosaic-stack {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.land-mosaic-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.85) contrast(1.02);
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  display: block;
+}
+
+.land-mosaic-item:hover img {
+  transform: scale(1.025);
+}
+
+.land-mosaic-item figcaption {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  padding: 0.45rem 0.75rem;
+  background: rgba(26, 22, 19, 0.85);
+  color: var(--land-cream);
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   05 — PEOPLE & BEYOND THE LANDSCAPE (Deep Forest Band)
+   ========================================================================== */
+.land-people-section {
+  padding: clamp(6rem, 10vw, 9rem) 0;
+  background-color: var(--land-forest);
+  color: var(--land-cream);
+}
+
+.land-people-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(360px, 1.2fr);
+  gap: clamp(2.5rem, 7vw, 7rem);
+  align-items: start;
+}
+
+.land-people-title h2 {
+  font-size: clamp(3.2rem, 5.8vw, 5.8rem);
+  color: var(--land-cream);
+  margin-top: 0.8rem;
+}
+
+.land-people-title h2 em {
+  color: var(--land-copper-lift);
+}
+
+.land-people-lead {
+  font-family: var(--gh-font-heading, 'Instrument Serif', Georgia, serif);
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  line-height: 1.25;
+  color: var(--land-cream);
+  margin: 0 0 1.6rem;
+}
+
+.land-people-body {
+  color: rgba(244, 237, 221, 0.8);
+  font-size: 1.18rem;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 48ch;
+}
+
+/* ==========================================================================
+   THE STORY CONTINUES (Next Chapters Spread)
+   ========================================================================== */
+.land-next-section {
+  padding: clamp(6rem, 10vw, 9rem) 0;
+  background-color: var(--land-cream);
+  border-bottom: 1px solid var(--land-line);
+}
+
+.land-next-head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 4rem;
+}
+
+.land-next-head h2 {
+  font-size: clamp(3.2rem, 5.8vw, 5.4rem);
+  color: var(--land-ink);
+  margin-bottom: 1.2rem;
+}
+
+.land-next-head h2 em {
+  color: var(--land-copper-dim);
+}
+
+.land-next-desc {
+  font-size: 1.18rem;
+  color: rgba(26, 22, 19, 0.78);
+  margin: 0;
+}
+
+.land-next-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.land-next-card {
+  padding: 2.5rem 2rem;
+  border: 1px solid var(--land-line);
+  background: var(--land-cream-warm);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: 2px;
+}
+
+.land-next-card:hover,
+.land-next-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--land-copper-dim);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+}
+
+.land-next-tag {
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--land-copper-dim);
+}
+
+.land-next-card strong {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--gh-font-heading, 'Instrument Serif', Georgia, serif);
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  line-height: 1;
+  font-weight: 400;
+  color: var(--land-ink);
+  margin: 1.2rem 0 0.8rem;
+}
+
+.land-next-card strong span {
+  font-size: 1.8rem;
+  transition: transform 0.25s ease;
+}
+
+.land-next-card:hover strong span {
+  transform: translateX(4px);
+}
+
+.land-next-card small {
+  font-family: var(--gh-font-body, 'EB Garamond', Georgia, serif);
+  font-size: 1.05rem;
+  color: rgba(26, 22, 19, 0.72);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (Breakpoints: 1024px, 780px, 480px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .land-origin-grid,
+  .land-slope-grid,
+  .land-regions-head,
+  .land-plant-grid,
+  .land-seasons-layout,
+  .land-measure-grid,
+  .land-people-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .land-spec-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .land-district-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .land-essay-mosaic {
+    grid-template-columns: 1fr;
+  }
+
+  .land-mosaic-item.large {
+    min-height: 440px;
+  }
+
+  .land-mosaic-stack {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+}
+
+@media (max-width: 780px) {
+  .land-hero {
+    min-height: min(88svh, 680px);
+    padding-top: 7rem;
+    padding-bottom: 2rem;
+  }
+
+  .land-hero-foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+  }
+
+  .land-hero-credit {
+    text-align: left;
+    max-width: none;
+  }
+
+  .land-slope-figure {
+    min-height: 420px;
+  }
+
+  .land-season-card {
+    grid-template-columns: 1fr;
+  }
+
+  .land-next-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .land-spec-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .land-district-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .land-facts-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .land-mosaic-stack {
+    grid-template-columns: 1fr;
+  }
+}

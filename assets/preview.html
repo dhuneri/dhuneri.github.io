@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Farmers Hero Preview - Full Page</title>
+    <link rel="stylesheet" href="/assets/css/screen.css">
+    <link rel="stylesheet" href="/assets/css/farmers-v3.css">
+    <style>
+        body { margin: 0; padding: 0; background: var(--farmers-ink); }
+        
+        /* FULL BLEED HERO */
+        .preview-hero-full {
+            position: relative;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1.35fr .65fr;
+            background: url('/assets/images/generated/hero-farmer-hands.jpg') center/cover no-repeat;
+            border-bottom: 1px solid var(--farmers-ink);
+        }
+
+        /* Overlay to ensure text readability across the whole image */
+        .preview-hero-full::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(23,23,20,0.85) 0%, rgba(23,23,20,0.2) 100%);
+            z-index: 1;
+        }
+
+        /* Ensure content sits above the overlay */
+        .preview-hero-main, .preview-standard {
+            position: relative;
+            z-index: 2;
+        }
+
+        .preview-hero-main {
+            padding: 12vh clamp(20px, 5vw, 76px) 8vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--farmers-paper);
+        }
+
+        .preview-hero-main h1 {
+            font-size: clamp(88px, 13vw, 182px);
+            line-height: .88;
+            letter-spacing: -.03em;
+            margin: 35px 0;
+            color: var(--farmers-paper);
+        }
+        
+        .preview-hero-main h1 em {
+            display: block;
+            padding-left: 10vw;
+            font-weight: 400;
+            color: var(--farmers-orange);
+        }
+        
+        .preview-hero-dek {
+            font-family: var(--font-display, "Instrument Serif", Georgia, serif);
+            font-style: italic;
+            font-size: clamp(27px, 3vw, 46px);
+            line-height: 1.08;
+            max-width: 27ch;
+            margin-top: auto;
+            color: rgba(243, 237, 223, 0.9);
+        }
+        
+        .preview-eyebrow {
+            font-family: var(--font-sans, Manrope, Arial, sans-serif);
+            font-size: 11px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--farmers-sage);
+        }
+
+        /* The right side box now floats elegantly over the image */
+        .preview-standard {
+            /* Translucent green so the photo faintly shows through */
+            background: rgba(36, 55, 45, 0.93);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: var(--farmers-paper);
+            padding: 12vh 45px 8vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-left: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .preview-standard strong {
+            display: block;
+            font-size: 46px;
+            line-height: 1;
+            margin-top: 12px;
+        }
+
+        .preview-standard p {
+            color: rgba(243, 237, 223, .72);
+            border-top: 1px solid rgba(255,255,255,.25);
+            padding-top: 20px;
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        
+        .preview-ui {
+            font-family: var(--font-sans, Manrope, Arial, sans-serif);
+            font-size: 11px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--farmers-orange);
+        }
+    </style>
+</head>
+<body class="farmers-v3">
+
+    <header class="preview-hero-full">
+        <div class="preview-hero-main">
+            <p class="preview-eyebrow">The Farmers · Evidence before portraiture</p>
+            <h1>The work <em>before spice.</em></h1>
+            <p class="preview-hero-dek">A useful account of large-cardamom farming begins with conditions, decisions and risks—not an invented face.</p>
+        </div>
+        <aside class="preview-standard" aria-label="Publication standard">
+            <div>
+                <span class="preview-ui">Publication standard</span>
+                <strong>No profile without consent.<br>No quote without a source.<br>No portrait without permission.</strong>
+            </div>
+            <p>Real farmer profiles appear only after consented field interviews. Until then, this page documents verified sector context, practical decisions and open questions.</p>
+        </aside>
+    </header>
+
+</body>
+</html>

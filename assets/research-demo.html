@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DHUNERI — Section 06 (Open Record) Prototype Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1613;
+      --ink-soft: rgba(26, 22, 19, 0.75);
+      --ink-faint: rgba(26, 22, 19, 0.48);
+      --cream-warm: #efe5d0;
+      --cream-deep: #e8dbbf;
+      --forest: #2a3630;
+      --forest-dark: #1e2723;
+      --copper: #b8703a;
+      --copper-dim: #8f5528;
+      --copper-lift: #d48a55;
+      --line: #cabda9;
+      --line-faint: rgba(26, 22, 19, 0.16);
+      --line-strong: rgba(26, 22, 19, 0.25);
+      --display: 'Instrument Serif', Georgia, serif;
+      --body: 'EB Garamond', Georgia, serif;
+      --ui: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--cream-warm);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 18px;
+      line-height: 1.6;
+      padding: 2.5rem 1.8rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .demo-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .demo-pill {
+      font-family: var(--ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--copper);
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    .demo-note {
+      font-family: var(--ui);
+      font-size: 12.5px;
+      color: var(--ink-soft);
+    }
+
+    /* Section 06 Styles */
+    .research-section {
+      padding: 1.5rem 0 3.5rem;
+    }
+
+    .research-topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line-strong);
+      padding-bottom: 1.1rem;
+      margin-bottom: 3.2rem;
+    }
+
+    .section-eyebrow {
+      font-family: var(--ui);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--copper);
+    }
+
+    .research-status-tag {
+      font-family: var(--ui);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .research-header {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: end;
+      margin-bottom: 3.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .research-header {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    /* Fixed High-Contrast Heading */
+    .research-title {
+      font-family: var(--display);
+      font-size: clamp(3.4rem, 6.2vw, 5.6rem);
+      font-weight: 400;
+      line-height: 0.92;
+      color: var(--ink); /* Explicitly set dark ink — no invisible bug */
+      margin: 0;
+    }
+
+    .research-title em {
+      color: var(--copper);
+      font-style: italic;
+    }
+
+    .research-lead {
+      color: var(--ink-soft);
+      font-size: 1.22rem;
+      line-height: 1.52;
+      max-width: 44ch;
+    }
+
+    /* Research Ledger / Docket */
+    .research-ledger {
+      border-top: 1px solid var(--line-strong);
+      margin-bottom: 2.8rem;
+    }
+
+    .ledger-row {
+      display: grid;
+      grid-template-columns: 0.38fr 1.25fr 0.9fr auto;
+      gap: 2rem;
+      align-items: center;
+      padding: 1.8rem 1.2rem;
+      border-bottom: 1px solid var(--line-strong);
+      cursor: pointer;
+      transition: all 0.22s cubic-bezier(0.23, 1, 0.32, 1);
+      border-radius: 8px;
+    }
+
+    @media (max-width: 960px) {
+      .ledger-row {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+    }
+
+    .ledger-row:hover,
+    .ledger-row.is-active {
+      background: rgba(255, 255, 255, 0.55);
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
+    }
+
+    .ledger-row.is-active {
+      border-bottom-color: var(--copper);
+      box-shadow: 0 4px 18px rgba(26, 22, 19, 0.05);
+    }
+
+    .ledger-index {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .ledger-num {
+      font-family: var(--display);
+      font-size: 1.8rem;
+      line-height: 1;
+      color: var(--copper);
+    }
+
+    .ledger-theme {
+      font-family: var(--ui);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .ledger-main h3 {
+      font-family: var(--display);
+      font-size: clamp(1.5rem, 2.2vw, 1.95rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .ledger-main p {
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      line-height: 1.45;
+    }
+
+    .ledger-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      width: fit-content;
+    }
+
+    .status-active {
+      background: rgba(184, 112, 58, 0.14);
+      color: var(--copper-dark);
+      border: 1px solid rgba(184, 112, 58, 0.3);
+    }
+
+    .status-field {
+      background: rgba(42, 54, 48, 0.12);
+      color: var(--forest);
+      border: 1px solid rgba(42, 54, 48, 0.25);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .location-tag {
+      font-family: var(--ui);
+      font-size: 11.5px;
+      color: var(--ink-faint);
+    }
+
+    .ledger-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--copper);
+      font-family: var(--ui);
+      font-size: 15px;
+      transition: all 0.2s ease;
+    }
+
+    .ledger-row:hover .ledger-action,
+    .ledger-row.is-active .ledger-action {
+      background: var(--copper);
+      border-color: var(--copper);
+      color: #ffffff;
+      transform: rotate(45deg);
+    }
+
+    /* Interactive Drawer: Expanded Research Details */
+    .research-preview-drawer {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1.8rem 2.2rem;
+      margin-bottom: 2.8rem;
+      box-shadow: 0 10px 30px rgba(26, 22, 19, 0.06);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2.5rem;
+      align-items: center;
+      transition: all 0.25s ease;
+    }
+
+    @media (max-width: 860px) {
+      .research-preview-drawer {
+        grid-template-columns: 1fr;
+        padding: 1.4rem;
+        gap: 1.5rem;
+      }
+    }
+
+    .drawer-label {
+      font-family: var(--ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 6px;
+    }
+
+    .drawer-title {
+      font-family: var(--display);
+      font-size: 1.9rem;
+      line-height: 1.1;
+      color: var(--forest);
+      margin-bottom: 10px;
+    }
+
+    .drawer-hypothesis {
+      font-size: 1.08rem;
+      color: var(--ink);
+      line-height: 1.52;
+    }
+
+    .drawer-methodology {
+      background: #faf7f2;
+      border: 1px solid var(--line-faint);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+    }
+
+    .drawer-methodology h4 {
+      font-family: var(--ui);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 6px;
+    }
+
+    .drawer-methodology p {
+      font-size: 13.5px;
+      line-height: 1.48;
+      color: var(--ink-soft);
+    }
+
+    /* Actions Bottom Bar */
+    .research-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--line-strong);
+    }
+
+    .primary-desk-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--forest);
+      color: #ffffff;
+      font-family: var(--ui);
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 999px;
+      transition: all 0.22s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .primary-desk-btn:hover {
+      background: var(--forest-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(42, 54, 48, 0.35);
+    }
+
+    .secondary-dispatch-link {
+      font-family: var(--ui);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--copper);
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--copper);
+      padding-bottom: 3px;
+      transition: all 0.2s ease;
+    }
+
+    .secondary-dispatch-link:hover {
+      color: var(--copper-dark);
+      border-bottom-color: var(--forest);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Demo Control Bar -->
+  <div class="demo-bar">
+    <div>
+      <span class="demo-pill">Interactive Prototype</span>
+      <span style="margin-left: 10px; font-family: var(--ui); font-size: 13.5px; font-weight: 600; color: var(--forest);">Section 06 · Open Record (Zero-Writing Solution)</span>
+    </div>
+    <div class="demo-note">💡 Click any research row to reveal field methodology & hypotheses</div>
+  </div>
+
+  <!-- Upgraded Section 06 -->
+  <section class="research-section">
+    <div class="research-topline">
+      <p class="section-eyebrow">06 — Open record</p>
+      <span class="research-status-tag">Active Field Workstreams · Taplejung</span>
+    </div>
+
+    <div class="research-header">
+      <div>
+        <h2 class="research-title">Keep following<br><em>the evidence.</em></h2>
+      </div>
+      <div>
+        <p class="research-lead">
+          Research we cannot find anywhere else, conducted directly across the high Himalayan ravines of Taplejung and documented in the open as findings are verified.
+        </p>
+      </div>
+    </div>
+
+    <!-- Active Research Ledger (Instead of Empty Desert) -->
+    <div class="research-ledger" id="researchLedger">
+      
+      <!-- Row 01 -->
+      <div class="ledger-row is-active" data-inquiry="1">
+        <div class="ledger-index">
+          <span class="ledger-num">01</span>
+          <span class="ledger-theme">Phytochemistry</span>
+        </div>
+        <div class="ledger-main">
+          <h3>High-Altitude Terpene Profiling</h3>
+          <p>Comparative gas chromatography measuring 1,8-cineole vs. terpinyl acetate density in Amomum subulatum capsules grown at 1,800m altitude.</p>
+        </div>
+        <div class="ledger-meta">
+          <span class="status-badge status-active">
+            <span class="status-dot"></span>
+            Lab Analysis
+          </span>
+          <span class="location-tag">Taplejung &bull; Kanchenjunga base</span>
+        </div>
+        <div class="ledger-action">+</div>
+      </div>
+
+      <!-- Row 02 -->
+      <div class="ledger-row" data-inquiry="2">
+        <div class="ledger-index">
+          <span class="ledger-num">02</span>
+          <span class="ledger-theme">Thermodynamics</span>
+        </div>
+        <div class="ledger-main">
+          <h3>Stone Bhatti Smoke-Curing Dynamics</h3>
+          <p>Thermal stability logging and alder-wood smoke compound transfer during 32 continuous hours of hearth cure.</p>
+        </div>
+        <div class="ledger-meta">
+          <span class="status-badge status-field">
+            <span class="status-dot"></span>
+            Field Study
+          </span>
+          <span class="location-tag">Traditional Bhatti &bull; Taplejung</span>
+        </div>
+        <div class="ledger-action">+</div>
+      </div>
+
+      <!-- Row 03 -->
+      <div class="ledger-row" data-inquiry="3">
+        <div class="ledger-index">
+          <span class="ledger-num">03</span>
+          <span class="ledger-theme">Agroforestry</span>
+        </div>
+        <div class="ledger-main">
+          <h3>Shade Canopy & Soil Microbiome</h3>
+          <p>Quantifying symbiotic nitrogen fixation between native Himalayan Alder (Utis) trees and root-stock resilience during monsoon deluge.</p>
+        </div>
+        <div class="ledger-meta">
+          <span class="status-badge status-active">
+            <span class="status-dot"></span>
+            Soil Analysis
+          </span>
+          <span class="location-tag">Arun River Basin</span>
+        </div>
+        <div class="ledger-action">+</div>
+      </div>
+
+    </div>
+
+    <!-- Interactive Drawer (Dynamic Inspection) -->
+    <div class="research-preview-drawer" id="previewDrawer">
+      <div>
+        <p class="drawer-label" id="drawerLabel">Inquiry 01 &bull; Phytochemistry &bull; Laboratory Record</p>
+        <h3 class="drawer-title" id="drawerTitle">High-Altitude Terpene Profiling</h3>
+        <p class="drawer-hypothesis" id="drawerHypothesis">
+          <strong>Hypothesis:</strong> Cold glacier night winds at 1,800m slow capsule maturation, resulting in 2.8x higher concentration of volatile bicyclic monoterpenes compared to lowland plantation harvests.
+        </p>
+      </div>
+      <div class="drawer-methodology">
+        <h4 id="methodologyTitle">Testing Methodology</h4>
+        <p id="methodologyText">
+          Gas chromatography–mass spectrometry (GC-MS) performed on single-estate lots. Testing protocols aligned with International ISO 6754 standards for whole black cardamom.
+        </p>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="research-actions">
+      <a href="/journal/" class="primary-desk-btn">
+        <span>Open the research desk in the Journal</span>
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+      <a href="#dispatch" class="secondary-dispatch-link">
+        Receive new field notes via Monthly Dispatch &darr;
+      </a>
+    </div>
+
+  </section>
+</div>
+
+<script>
+  const inquiryData = {
+    '1': {
+      label: 'Inquiry 01 &bull; Phytochemistry &bull; Laboratory Record',
+      title: 'High-Altitude Terpene Profiling',
+      hypothesis: '<strong>Hypothesis:</strong> Cold glacier night winds at 1,800m slow capsule maturation, resulting in 2.8x higher concentration of volatile bicyclic monoterpenes compared to lowland plantation harvests.',
+      methodTitle: 'Testing Methodology',
+      methodText: 'Gas chromatography–mass spectrometry (GC-MS) performed on single-estate lots. Testing protocols aligned with International ISO 6754 standards for whole black cardamom.'
+    },
+    '2': {
+      label: 'Inquiry 02 &bull; Thermodynamics &bull; Hearth Record',
+      title: 'Stone Bhatti Smoke-Curing Dynamics',
+      hypothesis: '<strong>Hypothesis:</strong> Thick river-stone masonry regulates conductive heat at a steady 55°C–65°C, preventing oil scorching while infusing pure guaiacol compounds from alder wood embers.',
+      methodTitle: 'Thermal Field Protocol',
+      methodText: 'Continuous 4-channel thermocouple dataloggers placed within the lower pod bed, upper mesh, and smoke exhaust plume throughout the 32-hour burn.'
+    },
+    '3': {
+      label: 'Inquiry 03 &bull; Agroforestry &bull; Soil Ecology',
+      title: 'Shade Canopy & Soil Microbiome',
+      hypothesis: '<strong>Hypothesis:</strong> Frankia actinorhizal nodules on native Himalayan Alder roots provide 60% of cardamom nitrogen requirements naturally, eliminating synthetic chemical inputs entirely.',
+      methodTitle: 'Ecological Field Protocol',
+      methodText: 'Soil core sampling at 0–30cm depths under closed Utis canopy vs. exposed ravine slopes across pre-monsoon and post-monsoon cycles.'
+    }
+  };
+
+  const rows = document.querySelectorAll('.ledger-row');
+  const drawerLabel = document.getElementById('drawerLabel');
+  const drawerTitle = document.getElementById('drawerTitle');
+  const drawerHypothesis = document.getElementById('drawerHypothesis');
+  const methodologyTitle = document.getElementById('methodologyTitle');
+  const methodologyText = document.getElementById('methodologyText');
+
+  rows.forEach(row => {
+    row.addEventListener('click', () => {
+      rows.forEach(r => r.classList.remove('is-active'));
+      row.classList.add('is-active');
+
+      const id = row.getAttribute('data-inquiry');
+      const data = inquiryData[id];
+      if (data) {
+        drawerLabel.innerHTML = data.label;
+        drawerTitle.textContent = data.title;
+        drawerHypothesis.innerHTML = data.hypothesis;
+        methodologyTitle.textContent = data.methodTitle;
+        methodologyText.textContent = data.methodText;
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

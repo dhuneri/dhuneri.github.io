@@ -1,0 +1,235 @@
+/* DHUNERI · Anatomy of a hillside — photo-led river/stream field plate.
+   Uses the original theme tokens from screen.css and is scoped to this component. */
+.land-v2-river-profile {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(5rem, 8vw, 7.5rem) 0;
+  color: var(--lokta-cream);
+  background: var(--kanchen-deep);
+}
+.land-v2-river-profile::before {
+  content: "";
+  position: absolute;
+  width: min(42rem, 60vw);
+  height: min(42rem, 60vw);
+  top: -29rem;
+  right: -11rem;
+  border: 1px solid rgba(212,138,85,.2);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3rem rgba(212,138,85,.025), 0 0 0 6rem rgba(212,138,85,.015);
+  pointer-events: none;
+}
+.land-river-layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(275px,.78fr) minmax(460px,1.22fr);
+  gap: clamp(2.8rem,6.5vw,7rem);
+  align-items: center;
+}
+.land-river-copy { max-width: 520px; }
+.land-river-copy h2 {
+  margin: 1rem 0 1.5rem;
+  color: var(--lokta-cream);
+  font-size: clamp(3.7rem,6.4vw,6.4rem);
+  line-height: .88;
+  letter-spacing: -.035em;
+}
+.land-river-copy h2 em { color: var(--smoke-copper-lift); }
+.land-river-intro {
+  max-width: 43ch;
+  color: var(--cream-80);
+  font-size: clamp(1.12rem,1rem + .35vw,1.35rem);
+  line-height: 1.48;
+}
+.land-river-note {
+  max-width: 43ch;
+  margin: 1.1rem 0 2rem;
+  color: var(--cream-65);
+  font-family: var(--font-ui);
+  font-size: .68rem;
+  line-height: 1.6;
+}
+.land-river-tabs {
+  display: grid;
+  border-top: 1px solid var(--cream-35);
+}
+.land-river-tab {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0,1fr) 1rem;
+  gap: .9rem;
+  align-items: center;
+  width: 100%;
+  padding: 1.15rem .35rem;
+  border: 0;
+  border-bottom: 1px solid var(--cream-15);
+  color: var(--lokta-cream);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background .25s ease, padding .25s ease;
+}
+.land-river-tab:hover, .land-river-tab.is-active {
+  padding-left: .8rem;
+  background: rgba(244,237,221,.055);
+}
+.land-river-tab-number {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--cream-35);
+  border-radius: 50%;
+  color: var(--cream-75);
+  font-family: var(--font-ui);
+  font-size: .62rem;
+  place-items: center;
+  transition: color .25s ease, background .25s ease, border-color .25s ease;
+}
+.land-river-tab.is-active .land-river-tab-number {
+  border-color: var(--smoke-copper-lift);
+  color: var(--ropani-ink);
+  background: var(--smoke-copper-lift);
+}
+.land-river-tab-copy { display: grid; gap: .25rem; }
+.land-river-tab-copy strong {
+  font-family: var(--font-ui);
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.land-river-tab-copy small {
+  color: var(--cream-70);
+  font-family: var(--font-body);
+  font-size: .95rem;
+}
+.land-river-tab-arrow { color: var(--smoke-copper-lift); opacity: 0; transition: opacity .2s ease, transform .2s ease; }
+.land-river-tab:hover .land-river-tab-arrow, .land-river-tab.is-active .land-river-tab-arrow { opacity: 1; transform: translate(2px,-2px); }
+.land-river-card {
+  overflow: hidden;
+  border: 1px solid rgba(244,237,221,.38);
+  border-radius: 3px;
+  color: var(--ropani-ink);
+  background: var(--lokta-cream);
+  box-shadow: 14px 16px 42px rgba(0,0,0,.14);
+}
+.land-river-card-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .95rem 1.2rem;
+  border-bottom: 1px solid var(--ropani-ink-15);
+  background: rgba(255,255,255,.35);
+  font-family: var(--font-ui);
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+.land-river-card-label { display: inline-flex; align-items: center; gap: .55rem; color: var(--kanchen-deep); }
+.land-river-card-label i { width: .48rem; height: .48rem; border-radius: 50%; background: var(--smoke-copper); box-shadow: 0 0 0 4px rgba(184,112,58,.14); }
+.land-river-counter { color: var(--smoke-copper-dim); }
+.land-river-photo {
+  position: relative;
+  height: clamp(290px,38vw,470px);
+  overflow: hidden;
+  background: var(--chiya-beige);
+}
+.land-river-photo::after {
+  content: "";
+  position: absolute;
+  inset: 55% 0 0;
+  background: linear-gradient(transparent,rgba(26,22,19,.52));
+  pointer-events: none;
+}
+.land-river-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.82) contrast(1.02);
+  transition: opacity .25s ease, transform .6s ease;
+}
+.land-river-photo img.is-changing { opacity: .25; transform: scale(1.025); }
+.land-river-photo-index {
+  position: absolute;
+  z-index: 1;
+  bottom: 1.2rem;
+  left: 1.25rem;
+  padding: .48rem .62rem;
+  color: var(--lokta-cream);
+  background: rgba(26,22,19,.72);
+  font-family: var(--font-ui);
+  font-size: .57rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+.land-river-card-body { padding: 1.5rem 1.6rem 1.3rem; }
+.land-river-location {
+  color: var(--smoke-copper-dim);
+  font-family: var(--font-ui);
+  font-size: .56rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.land-river-card-heading h3 {
+  margin: .55rem 0 .65rem;
+  color: var(--ropani-ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem,3vw,2.55rem);
+  line-height: .98;
+}
+.land-river-card-body > p {
+  max-width: 64ch;
+  color: var(--ropani-ink-70);
+  font-size: 1rem;
+  line-height: 1.48;
+}
+.land-river-credit {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--smoke-copper-dim);
+  font-family: var(--font-ui);
+  font-size: .57rem;
+  line-height: 1.5;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.land-river-card-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  padding: .85rem 1.2rem;
+  border-top: 1px solid var(--ropani-ink-15);
+  background: rgba(217,194,161,.22);
+  color: var(--ropani-ink-65);
+  font-family: var(--font-ui);
+  font-size: .53rem;
+  font-weight: 700;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.land-river-card-foot span { padding: .36rem .48rem; border: 1px solid var(--ropani-ink-15); }
+.land-river-card-foot .is-current { border-color: var(--smoke-copper); color: var(--smoke-copper-dim); background: rgba(184,112,58,.08); }
+@media (max-width: 900px) {
+  .land-river-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .land-river-copy { max-width: 760px; }
+  .land-river-card { width: min(100%,760px); }
+  .land-river-photo { height: clamp(280px,55vw,430px); }
+}
+@media (max-width: 560px) {
+  .land-v2-river-profile { padding: 4.8rem 0; }
+  .land-river-layout { gap: 2rem; }
+  .land-river-copy h2 { font-size: clamp(3.4rem,13vw,4.5rem); }
+  .land-river-intro { font-size: 1.08rem; }
+  .land-river-tab { grid-template-columns: 2.15rem minmax(0,1fr) .75rem; gap: .6rem; padding: 1rem .2rem; }
+  .land-river-tab-copy strong { font-size: .66rem; }
+  .land-river-tab-copy small { font-size: .85rem; }
+  .land-river-photo { height: 260px; }
+  .land-river-card-body { padding: 1.2rem 1.05rem 1.1rem; }
+  .land-river-card-foot { gap: .35rem; padding: .75rem .8rem; font-size: .47rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .land-river-tab, .land-river-tab-number, .land-river-tab-arrow, .land-river-photo img { transition: none !important; }
+}
